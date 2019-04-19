@@ -6,7 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 
 namespace portscan.socket_send
-{  
+{
     class SocketSend
     {
         private Socket Clienter { get; set; }
@@ -16,22 +16,24 @@ namespace portscan.socket_send
             try
             {
                 Clienter.Bind(new IPEndPoint(IPAddress.Parse(IPD), IPPort));
+                try
+                {
+                    Clienter.Connect(BIPD, BIPPort);
+                    Console.WriteLine("remote ip " + BIPD + "on port" + BIPPort + "is running");
+                    Clienter.Close();
+                }
+                catch
+                {
+                    Clienter.Close();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("port " + BIPPort + " dose't avalible");
+                }
             }
             catch
             {
+                Clienter.Close();
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("NetworkAdpator dons't avalible , or port has been binded");
-            }
-            try
-            {
-                Clienter.Connect(BIPD, BIPPort);
-                Console.WriteLine("remote ip " + BIPD + "on port" + BIPPort + "is running");
-                Clienter.Close();
-            }
-            catch (Exception e)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(e.ToString());
             }
         }
     }
