@@ -16,7 +16,6 @@ namespace portscan
                     if (args[3] == "bind-to")
                     {
                         SocketSend ins = new SocketSend(args[1], int.Parse(args[2]), args[4], int.Parse(args[5]));
-                        Console.WriteLine("Port " + args[5] + " on " + args[4] + " is running");
                     }
                     break;
                 case "auto-try":
@@ -26,8 +25,18 @@ namespace portscan
                         {
                             if (args[7] == "to")
                             {
-                                StartSetting autorun = new StartSetting();
-                                autorun.autotry(args);
+                                try
+                                {
+                                    if (args[9] == "-mthread")
+                                    {
+
+                                    }
+                                }
+                                catch
+                                {
+                                    StartSetting autorun = new StartSetting();
+                                    autorun.autotry(args);
+                                }
                             }
                         }
                     }

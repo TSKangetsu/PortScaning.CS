@@ -13,5 +13,9 @@ namespace portscan.startsetting
                 SocketSend auto = new SocketSend(argsset[1], int.Parse(argsset[2]), argsset[4], trytimes);
             }
         }
+        public void mthread()
+        {
+
+        }
     }
 }
