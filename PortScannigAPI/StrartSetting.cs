@@ -1,4 +1,6 @@
+using System;
 using portscan.socket_send;
+using System.Threading.Tasks;
 
 namespace portscan.startsetting
 {
@@ -13,9 +15,22 @@ namespace portscan.startsetting
                 SocketSend auto = new SocketSend(argsset[1], int.Parse(argsset[2]), argsset[4], trytimes);
             }
         }
-        public void mthread()
+        Task[] th { get; set; }
+        public void mthread(string[] argsset)
         {
-
+            th = new Task[40];
+            for (int trytimes = int.Parse(argsset[6]); trytimes <= int.Parse(argsset[8]); trytimes++)
+            {
+                for (int i = 0; i <= int.Parse(argsset[10]); i++)
+                {
+                    th[i] = Task.Factory.StartNew(() =>
+                    {
+                        SocketSend auto_thms = new SocketSend(argsset[1], int.Parse(argsset[2]), argsset[4], trytimes);
+                        Console.WriteLine(i);
+                    });
+                }
+                Task.WaitAll();
+            }
         }
     }
 }
