@@ -16,16 +16,18 @@ namespace portscan.startsetting
             }
         }
         Task[] th { get; set; }
+        SocketSend[] auto_thms;
         public void mthread(string[] argsset)
         {
             th = new Task[40];
+            auto_thms = new SocketSend[40];
             for (int trytimes = int.Parse(argsset[6]); trytimes <= int.Parse(argsset[8]); trytimes++)
             {
                 for (int i = 0; i <= int.Parse(argsset[10]); i++)
                 {
                     th[i] = Task.Factory.StartNew(() =>
                     {
-                        SocketSend auto_thms = new SocketSend(argsset[1], int.Parse(argsset[2]), argsset[4], trytimes);
+                        auto_thms[i] = new SocketSend(argsset[1], int.Parse(argsset[2]), argsset[4], trytimes);
                         Console.WriteLine(i);
                     });
                 }
