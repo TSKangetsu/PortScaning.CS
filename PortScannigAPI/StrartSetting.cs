@@ -27,7 +27,7 @@ namespace portscan.startsetting
                 {
                     th[i] = Task.Factory.StartNew(() =>
                     {
-                        auto_thms[i] = new SocketSend(argsset[1], int.Parse(argsset[2]), argsset[4], trytimes);
+                        auto_thms[i] = new SocketSend(argsset[1], int.Parse(argsset[2]), argsset[4], trytimes, i);
                         Console.WriteLine(i);
                     });
                 }

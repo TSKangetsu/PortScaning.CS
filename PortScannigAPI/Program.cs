@@ -24,18 +24,19 @@ namespace portscan
                         {
                             if (args[7] == "to")
                             {
-                                // try
-                                // {
-                                if (args[9] == "-m")
+                                try
                                 {
-                                    StartSetting autorun_thms = new StartSetting();
-                                    autorun_thms.mthread(args);
-                                    //     }
-                                    // }
-                                    // catch
-                                    // {
-                                    // StartSetting autorun = new StartSetting();
-                                    // autorun.autotry(args);
+                                    if (args[9] == "-m")
+                                    {
+                                        StartSetting autorun_thms = new StartSetting();
+                                        autorun_thms.mthread(args);
+                                    }
+                                }
+                                catch (Exception e)
+                                {
+                                    Console.WriteLine(e.ToString());
+                                    StartSetting autorun = new StartSetting();
+                                    autorun.autotry(args);
                                 }
                             }
                         }
