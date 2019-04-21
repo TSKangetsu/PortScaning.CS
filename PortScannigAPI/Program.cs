@@ -35,8 +35,8 @@ namespace portscan
                                 catch (Exception e)
                                 {
                                     Console.WriteLine(e.ToString());
-                                    StartSetting autorun = new StartSetting();
-                                    autorun.autotry(args);
+                                    // StartSetting autorun = new StartSetting();
+                                    // autorun.autotry(args);
                                 }
                             }
                         }

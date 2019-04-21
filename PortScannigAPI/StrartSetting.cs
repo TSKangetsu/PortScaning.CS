@@ -1,6 +1,6 @@
 using System;
 using portscan.socket_send;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace portscan.startsetting
 {
@@ -15,23 +15,28 @@ namespace portscan.startsetting
                 SocketSend auto = new SocketSend(argsset[1], int.Parse(argsset[2]), argsset[4], trytimes);
             }
         }
-        Task[] th { get; set; }
+        Thread[] threadm;
         SocketSend[] auto_thms;
         public void mthread(string[] argsset)
         {
-            th = new Task[40];
-            auto_thms = new SocketSend[40];
+            threadm = new Thread[int.Parse(argsset[10])];
+            auto_thms = new SocketSend[int.Parse(argsset[8]) + 1];
             for (int trytimes = int.Parse(argsset[6]); trytimes <= int.Parse(argsset[8]); trytimes++)
             {
                 for (int i = 0; i <= int.Parse(argsset[10]); i++)
                 {
-                    th[i] = Task.Factory.StartNew(() =>
-                    {
-                        auto_thms[i] = new SocketSend(argsset[1], int.Parse(argsset[2]), argsset[4], trytimes, i);
-                        Console.WriteLine(i);
-                    });
+                    // th[i] = Task.Factory.StartNew(() =>
+                    // {
+                    threadm[i] = new Thread(new ThreadStart(delegate { auto_thms[i] = new SocketSend(argsset[1], int.Parse(argsset[2]), argsset[4], trytimes); }));
+                    // auto_thms[i] = new SocketSend(argsset[1], int.Parse(argsset[2]), argsset[4], trytimes, i);
+                    // Console.WriteLine(i);
+                    // });
                 }
-                Task.WaitAll();
+                for (int i = 0; i <= int.Parse(argsset[10]); i++)
+                {
+                    threadm[i].Start();
+                    threadm[i].Join();
+                }
             }
         }
     }
