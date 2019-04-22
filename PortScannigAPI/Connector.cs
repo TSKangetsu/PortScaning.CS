@@ -10,7 +10,7 @@ namespace portscan.socket_send
     class SocketSend
     {
         private Socket Clienter { get; set; }
-        public SocketSend(string IPD, int IPPort, string BIPD, int BIPPort)
+        public bool SocketSendor(string IPD, int IPPort, string BIPD, int BIPPort)
         {
             Clienter = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             try
@@ -21,19 +21,24 @@ namespace portscan.socket_send
                     Clienter.Connect(BIPD, BIPPort);
                     Console.WriteLine("remote ip " + BIPD + "on port" + BIPPort + "is running");
                     Clienter.Close();
+                    return true;
                 }
-                catch
+                catch //(Exception e)
                 {
                     Clienter.Close();
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("port " + BIPPort + " dose't avalible");
+                    // Console.WriteLine(e.ToString());
+                    return false;
                 }
             }
-            catch
+            catch //(Exception e)
             {
                 Clienter.Close();
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("NetworkAdpator dons't avalible , or port has been binded");
+                Console.WriteLine("NetworkAdpator dons't avalible , or port " + IPPort + " has been binded");
+                // Console.WriteLine(e.ToString());
+                return false;
             }
         }
     }
