@@ -16,6 +16,7 @@ namespace portscan
                     {
                         SocketSend ins = new SocketSend(args[1], int.Parse(args[2]), args[4], int.Parse(args[5]));
                     }
+
                     break;
                 case "auto-try":
                     if (args[3] == "bind-to")
@@ -24,20 +25,20 @@ namespace portscan
                         {
                             if (args[7] == "to")
                             {
-                                try
+                                // try
+                                // {
+                                if (args[9] == "-m")
                                 {
-                                    if (args[9] == "-m")
-                                    {
-                                        StartSetting autorun_thms = new StartSetting();
-                                        autorun_thms.mthread(args);
-                                    }
+                                    StartSetting autorun_thms = new StartSetting();
+                                    autorun_thms.mthread(args);
                                 }
-                                catch (Exception e)
-                                {
-                                    Console.WriteLine(e.ToString());
-                                    // StartSetting autorun = new StartSetting();
-                                    // autorun.autotry(args);
-                                }
+                                // }
+                                // catch (Exception e)
+                                // {
+                                //     Console.WriteLine(e.ToString());
+                                //     StartSetting autorun = new StartSetting();()
+                                //     autorun.autotry(args);
+                                // }
                             }
                         }
                     }

@@ -10,7 +10,7 @@
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/PortScannigAPI/bin/Debug/netcoreapp2.2/PortScannigAPI.dll",
-            "args": "auto-try 10.110.73.97 24 bind-to 219.136.125.139 from 80 to 445 -m 4",
+            "args": "auto-try 192.168.43.154 24 bind-to 163.177.151.109 from 80 to 445 -m 4",
             "cwd": "${workspaceFolder}/PortScannigAPI",
             // For more information about the 'console' field, see https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md#console-terminal-window
             "console": "internalConsole",
