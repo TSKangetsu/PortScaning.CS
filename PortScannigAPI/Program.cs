@@ -47,6 +47,7 @@ namespace portscan
                     Console.WriteLine("no args works");
                     break;
             }
+            Console.Read();
         }
     }
 }
